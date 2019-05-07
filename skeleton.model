@@ -18,7 +18,7 @@ type Person : either {
   Failed
 };
 var roommates: Array<Person>[1..5];
-
+var i:0..5
 
 rule step for state in roommates {
   match state {
@@ -30,6 +30,16 @@ rule step for state in roommates {
       if bananas == 0 {
         if (notePresent) {
           // Roommate at store: try again later
+        i=0;
+        for r in roommates {
+         if(r==Hungry){
+         i+=1;
+         }
+         }
+         if(i==5){
+         notePresent = False;
+         }
+          
         } else {
           notePresent = True;
           state = GoingToStore;
@@ -43,13 +53,14 @@ rule step for state in roommates {
     GoingToStore {
       state = ReturningFromStore {
         carrying: urandomRange(1, 8)
+    
       };
+     
     }
 
     ReturningFromStore(bag) {
       if (urandomRange(0, 9) == 0) {
         state = Failed;
-        notePresent = False;
       } else {
         bananas += bag.carrying;
         notePresent = False;
