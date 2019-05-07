@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-var bananas : 0..100 = 9;
+var bananas : 0..100 = 3;
 type Person : either {
   Happy,
   Hungry,
