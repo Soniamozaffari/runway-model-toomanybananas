@@ -30,13 +30,11 @@ rule step for state in roommates {
       if bananas == 0 {
         if (notePresent) {
           // Roommate at store: try again later
-        i=0;
-        for r in roommates {
-         match r{
-         Hungry {
-          i+=1;
-    }
-    }
+           i=0;
+           for r in roommates {
+             if(r==Hungry){
+             i+=1;
+         }
          }
          if(i==5){
          notePresent = False;
